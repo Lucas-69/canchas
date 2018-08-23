@@ -18,7 +18,7 @@ class AddTableTurns extends Migration
             $table->increments('id');
             $table->string('fecha');
             $table->string('hora');
-            $table->enum('state',['0','1','2','3','4'])->default('cliente');
+            $table->enum('state',['0','1','2','3','4'])->default('0');
             /*
             0: falta confirmar
             1: reservado
