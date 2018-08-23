@@ -26,4 +26,21 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function business(){
+        return $this->hasMany('App\Busines');
+    }
+
+
+    public function admin(){
+        return $this->type === 'admin';
+    }
+
+    public function encargado(){
+        return $this->type === 'encargado';
+    }
+
+    public function cliente(){
+        return $this->type === 'cliente';
+    }
 }

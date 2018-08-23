@@ -11,6 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['prefix'=>'admin','middleware'=>['auth','admin']], function(){
+
+	Route::get('/',function(){
+		return view('admin.index');
+	})->name('admin.inicio');
+
+	Route::resource('business','BusinessController');
+	Route::get('business/{id}/destroy',[
+		'uses'=>'BusinessController@destroy',
+		'as'=>'business.destroy'
+	]);
+
 });
+
+Auth::routes();
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
