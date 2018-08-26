@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Business;
 
 class BusinessController extends Controller
 {
@@ -14,6 +15,9 @@ class BusinessController extends Controller
     public function index()
     {
         //
+         $business = BusinessController::orderBy('id','ASC')->paginate(5);
+        
+        return view('admin.business.index')->with("business",$business);
     }
 
     /**
@@ -23,7 +27,8 @@ class BusinessController extends Controller
      */
     public function create()
     {
-        //
+        return View::make('admin.business.create');
+
     }
 
     /**
@@ -34,7 +39,12 @@ class BusinessController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //        dd($request);
+        $business = new business($request->all());
+        $business->password = bcrypt($request->password);
+        $business->save();
+        flash('Se a registrado ' . $business->name . ' de forma exitosa')->success();
+        return redirect()->route('business.index');
     }
 
     /**
@@ -57,6 +67,9 @@ class BusinessController extends Controller
     public function edit($id)
     {
         //
+          //
+        $business = business::find($id);
+        return view('admin.business.edit')->with("business",$business);
     }
 
     /**
@@ -80,5 +93,18 @@ class BusinessController extends Controller
     public function destroy($id)
     {
         //
+        $business = business::find($id);        
+        
+        if ($business->delete()){
+            Session::flas('message', 'Eliminado Correctamente !');
+            Session::flas('class', 'success');
+        } else{
+            Session::flas('message', 'Ha Ocurrido un Error !');
+            Session::flas('class', 'danger');
+        }
+        $business->delete();
+
+        flash('Se a eliminado ' . $business->name . ' de forma exitosa')->error();
+        return redirect()->route('business.index');
     }
 }
