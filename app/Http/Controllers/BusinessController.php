@@ -15,9 +15,6 @@ class BusinessController extends Controller
     public function index()
     {
         //
-         $business = BusinessController::orderBy('id','ASC')->paginate(5);
-        
-        return view('admin.business.index')->with("business",$business);
     }
 
     /**
@@ -27,7 +24,7 @@ class BusinessController extends Controller
      */
     public function create()
     {
-        return View::make('admin.business.create');
+        
 
     }
 
@@ -39,12 +36,7 @@ class BusinessController extends Controller
      */
     public function store(Request $request)
     {
-        //        dd($request);
-        $business = new business($request->all());
-        $business->password = bcrypt($request->password);
-        $business->save();
-        flash('Se a registrado ' . $business->name . ' de forma exitosa')->success();
-        return redirect()->route('business.index');
+        //      
     }
 
     /**
@@ -67,9 +59,7 @@ class BusinessController extends Controller
     public function edit($id)
     {
         //
-          //
-        $business = business::find($id);
-        return view('admin.business.edit')->with("business",$business);
+        
     }
 
     /**
@@ -92,7 +82,8 @@ class BusinessController extends Controller
      */
     public function destroy($id)
     {
-        //
+        /*
+        --PARA VER SI ESTA BUENA ESTA FORMA --
         $business = business::find($id);        
         
         if ($business->delete()){
@@ -106,5 +97,6 @@ class BusinessController extends Controller
 
         flash('Se a eliminado ' . $business->name . ' de forma exitosa')->error();
         return redirect()->route('business.index');
+        */
     }
 }
