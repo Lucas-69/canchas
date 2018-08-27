@@ -3,7 +3,10 @@
 @section('title','Nuevo Turno')
 
 @section('content')
-<div class="alert alert-danger">
+
+@if(count($errors)>0)
+
+	<div class="alert alert-danger">
 		<ul>
 			@foreach($errors->all() as $error)
 
@@ -17,6 +20,7 @@
 
 	</div>
 	
+@endif
 <div class="container">
 	<h3>Nuevo Turno</h3>
 
