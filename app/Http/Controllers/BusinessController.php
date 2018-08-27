@@ -23,7 +23,8 @@ class BusinessController extends Controller
      */
     public function create()
     {
-        //
+        
+
     }
 
     /**
@@ -34,7 +35,7 @@ class BusinessController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //      
     }
 
     /**
@@ -57,6 +58,7 @@ class BusinessController extends Controller
     public function edit($id)
     {
         //
+        
     }
 
     /**
@@ -79,6 +81,21 @@ class BusinessController extends Controller
      */
     public function destroy($id)
     {
-        //
+        /*
+        --PARA VER SI ESTA BUENA ESTA FORMA --
+        $business = business::find($id);        
+        
+        if ($business->delete()){
+            Session::flas('message', 'Eliminado Correctamente !');
+            Session::flas('class', 'success');
+        } else{
+            Session::flas('message', 'Ha Ocurrido un Error !');
+            Session::flas('class', 'danger');
+        }
+        $business->delete();
+
+        flash('Se a eliminado ' . $business->name . ' de forma exitosa')->error();
+        return redirect()->route('business.index');
+        */
     }
 }
