@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Busines;
+use Mapper;
+
 
 class BusinessController extends Controller
 {
@@ -13,7 +16,9 @@ class BusinessController extends Controller
      */
     public function index()
     {
-        //
+        //        dd("todo ok");
+        $business = Busines::orderBy('id','DESC')->paginate(20);
+        return view('admin.business.index')->with('business',$business);
     }
 
     /**
@@ -23,8 +28,8 @@ class BusinessController extends Controller
      */
     public function create()
     {
-        
-
+        Mapper::map(-34.618669, -68.339767, ['eventDblClick' => 'console.log("double left click");']);
+        return view('admin.business.create');
     }
 
     /**
@@ -36,6 +41,12 @@ class BusinessController extends Controller
     public function store(Request $request)
     {
         //      
+        $busines = new Busines($request->all());
+        //el administrador deberia elegir al usuario... no ser el usuario
+        $busines->user_id = \Auth::user()->id;
+        $busines->save();
+        flash('Se creado la empresa ' . $busines->name)->success();
+        return redirect()->route('business.index');
     }
 
     /**
@@ -47,6 +58,9 @@ class BusinessController extends Controller
     public function show($id)
     {
         //
+        $busines = Busines::find($id);
+        Mapper::map(-34.618669, -68.339767, ['eventDblClick' => 'console.log("double left click");']);
+        return view('admin.business.show')->with('busines',$busines);
     }
 
     /**
@@ -58,7 +72,8 @@ class BusinessController extends Controller
     public function edit($id)
     {
         //
-        
+        $busines = Busines::find($id);
+        return view('admin.business.edit')->with('busines',$busines);
     }
 
     /**
@@ -70,7 +85,12 @@ class BusinessController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //dd($request);
+        $busines = Busines::find($id);
+        $busines->fill($request->all());
+        $busines->save();
+        flash('Se a editado la empresa ' . $busines->name)->success();
+        return redirect()->route('business.index');
     }
 
     /**
@@ -81,21 +101,9 @@ class BusinessController extends Controller
      */
     public function destroy($id)
     {
-        /*
-        --PARA VER SI ESTA BUENA ESTA FORMA --
-        $business = business::find($id);        
-        
-        if ($business->delete()){
-            Session::flas('message', 'Eliminado Correctamente !');
-            Session::flas('class', 'success');
-        } else{
-            Session::flas('message', 'Ha Ocurrido un Error !');
-            Session::flas('class', 'danger');
-        }
-        $business->delete();
-
-        flash('Se a eliminado ' . $business->name . ' de forma exitosa')->error();
+        $busines = Busines::find($id);;        
+        $busines->delete();
+        flash('Se a eliminado ' . $busines->name . ' de forma exitosa')->error();
         return redirect()->route('business.index');
-        */
     }
 }
