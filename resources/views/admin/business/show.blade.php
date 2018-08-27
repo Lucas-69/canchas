@@ -7,11 +7,5 @@
 <div class="container">
 	<h3>Nuevo Negocio</h3>
 
-
-
-
-
-
-
 </div>
 @endsection
