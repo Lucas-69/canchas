@@ -1,12 +1,12 @@
 <?php
- 
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Turn;
 use App\Court;
-use App\Busines;
 
-class CourtsController extends Controller
+class TurnsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class CourtsController extends Controller
     public function index()
     {
         //
-        $courts = Court::orderBy('id','DESC')->paginate(20);
-        return view('admin.courts.index')->with('courts',$courts);
+        $turns = Turn::orderBy('id','DESC')->paginate(20);
+        return view('admin.turns.index')->with('turns',$turns);
     }
 
     /**
@@ -28,8 +28,8 @@ class CourtsController extends Controller
     public function create()
     {
         //
-        $business = Busines::orderBy('name','ASC')->pluck('name','id');
-        return view('admin.courts.create')->with('business',$business);
+        $courts = Court::orderBy('id','ASC')->pluck('id','id');
+        return view('admin.turns.create')->with('courts',$courts);
     }
 
     /**
@@ -40,11 +40,11 @@ class CourtsController extends Controller
      */
     public function store(Request $request)
     {
-        //dd("desde create todo ok");
-        $court = new Court($request->all());
-        $court->save();
-        flash('Se creado la cancha de la empresa ' . $court->company->name)->success();
-        return redirect()->route('courts.index');
+        //
+        $turn = new Turn($request->all());
+        $turn->save();
+        flash('Se creado el turno de la cancha n°:' .$turn->court->id. ' de la empresa ' .$turn->court->company->name)->success();
+        return redirect()->route('turns.index');
     }
 
     /**
@@ -66,9 +66,9 @@ class CourtsController extends Controller
      */
     public function edit($id)
     {
-        //      
-        $court = Court::find($id);
-        return view('admin.courts.edit')->with('court',$court);
+        //
+        $turn = Turn::find($id);
+        return view('admin.turns.edit')->with('turn',$turn);
     }
 
     /**
@@ -80,13 +80,12 @@ class CourtsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd("desde editar");
-        $court = Court::find($id);
-        $court->fill($request->all());
-        $court->save();
-        flash('Se a editado la cancha de la empresa ' . $court->company->name)->success();
-        return redirect()->route('courts.index');
-
+        //
+        $turn = Turn::find($id);
+        $turn->fill($request->all());
+        $turn->save();
+        flash('Se a editado el turno de la cancha n°:' .$turn->court->id. ' de la empresa ' .$turn->court->company->name)->success();
+        return redirect()->route('turns.index');
     }
 
     /**
@@ -98,9 +97,9 @@ class CourtsController extends Controller
     public function destroy($id)
     {
         //
-        $court = Court::find($id);        
-        $court->delete();
-        flash('Se a eliminado la cancha de la empresa ' . $court->company->name)->error();
-        return redirect()->route('courts.index');
+        $turn = Turn::find($id);      
+        $turn->delete();
+        flash('Se a eliminado el turno de la cancha n°:' .$turn->court->id. ' de la empresa ' .$turn->court->company->name)->error();
+        return redirect()->route('turns.index');
     }
 }
