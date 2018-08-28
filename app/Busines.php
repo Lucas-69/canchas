@@ -14,4 +14,10 @@ class Busines extends Model
     public function user(){
     	return $this->belongsTo('App\User');
     }
+
+	public function courts(){
+		return $this->hasMany('App\Court');
+	}
+
+
 }

@@ -29,6 +29,12 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']], function(){
 		'as'=>'users.destroy'
 	]);
 
+	Route::resource('courts','CourtsController');
+	Route::get('court/{id}/destroy',[
+		'uses'=>'CourtsController@destroy',
+		'as'=>'court.destroy'
+	]);
+
 });
 
 
