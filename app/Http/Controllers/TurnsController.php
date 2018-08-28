@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Turn;
+use App\Court;
 
 class TurnsController extends Controller
 {
@@ -14,6 +16,8 @@ class TurnsController extends Controller
     public function index()
     {
         //
+        $turns = Turn::orderBy('id','DESC')->paginate(20);
+        return view('admin.turns.index')->with('turns',$turns);
     }
 
     /**
@@ -24,6 +28,8 @@ class TurnsController extends Controller
     public function create()
     {
         //
+        $courts = Court::orderBy('id','ASC')->pluck('id','id');
+        return view('admin.turns.create')->with('courts',$courts);
     }
 
     /**
@@ -35,6 +41,10 @@ class TurnsController extends Controller
     public function store(Request $request)
     {
         //
+        $turn = new Turn($request->all());
+        $turn->save();
+        flash('Se creado el turno de la cancha n°:' .$turn->court->id. ' de la empresa ' .$turn->court->company->name)->success();
+        return redirect()->route('turns.index');
     }
 
     /**
@@ -57,6 +67,8 @@ class TurnsController extends Controller
     public function edit($id)
     {
         //
+        $turn = Turn::find($id);
+        return view('admin.turns.edit')->with('turn',$turn);
     }
 
     /**
@@ -69,6 +81,11 @@ class TurnsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $turn = Turn::find($id);
+        $turn->fill($request->all());
+        $turn->save();
+        flash('Se a editado el turno de la cancha n°:' .$turn->court->id. ' de la empresa ' .$turn->court->company->name)->success();
+        return redirect()->route('turns.index');
     }
 
     /**
@@ -80,5 +97,9 @@ class TurnsController extends Controller
     public function destroy($id)
     {
         //
+        $turn = Turn::find($id);      
+        $turn->delete();
+        flash('Se a eliminado el turno de la cancha n°:' .$turn->court->id. ' de la empresa ' .$turn->court->company->name)->error();
+        return redirect()->route('turns.index');
     }
 }
