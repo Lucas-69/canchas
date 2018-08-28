@@ -14,4 +14,9 @@ class Court extends Model
 	public function company(){
 		return $this->belongsTo('App\Busines');
 	}
+
+	public function turns(){
+		return $this->hasMany('App\Turn
+			');
+	}
 }

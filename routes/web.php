@@ -35,6 +35,13 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']], function(){
 		'as'=>'court.destroy'
 	]);
 
+	Route::resource('turns','TurnsController');
+	Route::get('turn/{id}/destroy',[
+		'uses'=>'TurnsController@destroy',
+		'as'=>'turn.destroy'
+	]);
+
+
 });
 
 
