@@ -18,6 +18,7 @@
         <li ><a href=" {{ route('business.index')}} ">Empresas<span class="sr-only">(current)</span></a></li>
         <li ><a href=" {{ route('courts.index')}} ">Canchas<span class="sr-only">(current)</span></a></li>
         <li ><a href=" {{ route('turns.index')}} ">Turnos<span class="sr-only">(current)</span></a></li>
+        <li ><a href=" {{ route('reservations.index')}} ">Reservasiones<span class="sr-only">(current)</span></a></li>
       </ul>
 
       

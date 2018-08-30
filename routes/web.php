@@ -41,6 +41,12 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']], function(){
 		'as'=>'turn.destroy'
 	]);
 
+	Route::resource('reservations','ReservationsController');
+	Route::get('reservation/{id}/destroy',[
+		'uses'=>'ReservationsController@destroy',
+		'as'=>'reservation.destroy'
+	]);
+
 
 });
 
