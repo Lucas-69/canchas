@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Reservation extends Model
+class Booking extends Model
 {
     //
-    protected $table = "reservations";
+    protected $table = "bookings";
 
-    protected $fillable = ['id','precioTotal','user_id'];
+    protected $fillable = ['id','turn_id','reservation_id'];
 
     public function user(){
     	return $this->belongsTo('App\User');
