@@ -11,7 +11,11 @@ class Booking extends Model
 
     protected $fillable = ['id','turn_id','reservation_id'];
 
-    public function user(){
-    	return $this->belongsTo('App\User');
+    public function turn(){
+    	return $this->belongsTo('App\Turn');
+    }
+
+    public function reservation(){
+    	return $this->belongsTo('App\Reservation');
     }
 }

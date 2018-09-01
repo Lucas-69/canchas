@@ -14,4 +14,8 @@ class Turn extends Model
     public function court(){
     	return $this->belongsTo('App\Court');
     }
+
+    public function bookings(){
+    	return $this->hasMany('App\Booking');
+    }
 }

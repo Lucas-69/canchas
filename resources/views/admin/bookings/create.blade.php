@@ -22,6 +22,23 @@
 @endif
 <div class="container">
 	<h3>New Booking</h3>
+	{!! Form::open(['route'=>'bookings.store', 'method'=>'POST']) !!}
+		<div class="form-group">
+		{!! Form::label('turn_id','Turno*') !!}
+		{!! Form::select('turn_id',$turns,null,['class'=>'form-control select-category','required']) !!}
+		</div>
+
+		<div class="form-group">
+		{!! Form::label('reservation_id','Reserva*') !!}
+		{!! Form::select('reservation_id',$reservations,null,['class'=>'form-control select-category','required']) !!}
+		</div>
+
+		<div class="form-group">
+			{!! Form::submit('Crear',['class'=>'btn btn-primary']) !!}
+		</div>
+
+
+	{!! Form::close() !!}
 
 
 </div>

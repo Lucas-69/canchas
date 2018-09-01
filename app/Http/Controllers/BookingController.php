@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Booking;
+use App\Turn;
+use App\Reservation;
 
 class BookingController extends Controller
 {
@@ -15,8 +17,8 @@ class BookingController extends Controller
     public function index()
     {
         //
-         $booking = Booking::orderBy('id','ASC')->paginate(20);
-        return view('admin.bookings.index')->with('booking',$booking);
+        $bookings = Booking::orderBy('id','ASC')->paginate(20);
+        return view('admin.bookings.index')->with('bookings',$bookings);
     }
 
     /**
@@ -27,7 +29,9 @@ class BookingController extends Controller
     public function create()
     {
         //
-        return view('admin.bookings.create');
+        $turns = Turn::orderBy('id','ASC')->pluck('id','id');
+        $reservations = Reservation::orderBy('id','ASC')->pluck('id','id');
+        return view('admin.bookings.create')->with("turns",$turns)->with("reservations",$reservations);
     }
 
     /**
@@ -39,7 +43,9 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         //
+        //dd($request);
         $booking = new Booking($request->all());
+        //dd($booking);
         $booking->save();
         flash('Se genero su reserva' . $booking->name)->success();
         return redirect()->route('bookings.store');
@@ -65,10 +71,11 @@ class BookingController extends Controller
     public function edit($id)
     {
         //
+        $turns = Turn::orderBy('id','ASC')->pluck('id','id');
+        $reservations = Reservation::orderBy('id','ASC')->pluck('id','id');        
         $booking = Booking::find($id);
-        return view('admin.bookings.edit')->with('booking',$booking);
+        return view('admin.bookings.edit')->with('booking',$booking)        ->with("turns",$turns)->with("reservations",$reservations);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -78,12 +85,12 @@ class BookingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //        dd($id);
         $booking = Booking::find($id);
         $booking->fill($request->all());
         $booking->save();
         flash('Se a editado la reseva' . $booking->name)->success();
-        return redirect()->route('bookings.update');
+        return redirect()->route('bookings.index');
     }
 
     /**
@@ -98,9 +105,7 @@ class BookingController extends Controller
         $booking = Booking::find($id);
         flash('Se a borrado la reserva N° ' . $booking->id)->error();
         $booking->delete();
-        return view('admin.bookings.destroy')->with('booking',$booking);
-
-        
+        return redirect()->route('bookings.index');        
         
     }
 }

@@ -1,6 +1,6 @@
 @extends('admin.template.main')
 
-@section('title','Edit Booking')
+@section('title','Edit Booking n°:'.$booking->id)
 
 @section('content')
 @if(count($errors)>0)
@@ -23,42 +23,24 @@
 <div class="container">
 	<h3>Edit Booking</h3>
 
+	{!! Form::open(['route'=>['bookings.update', $booking->id], 'method'=>'PUT']) !!}
+		<div class="form-group">
+		{!! Form::label('turn_id','Turno*') !!}
+		{!! Form::select('turn_id',$turns,$booking->turn_id,['class'=>'form-control select-category','required']) !!}
+		</div>
+
+		<div class="form-group">
+		{!! Form::label('reservation_id','Reserva*') !!}
+		{!! Form::select('reservation_id',$reservations,$booking->reservation_id,['class'=>'form-control select-category','required']) !!}
+		</div>
+
+		<div class="form-group">
+			{!! Form::submit('Editar',['class'=>'btn btn-primary']) !!}
+		</div>
+
+
+	{!! Form::close() !!}
+
 
 </div>
-@endsection
-
-@section('js')
-	<script>
-
-		$('.select-category').chosen({
-			placeholder_text_multiple:'Seleccione al menos 3 tags',
-			no_results_text: "Oops, no hay categoria parecida a ",
-			search_contains:true,
-
-		});
-
-		$('#trumbowyg-demo').trumbowyg();
-		$('#trumbowyg-demo2').trumbowyg();
-
-		document.getElementById("upload").onchange = function() {
-			var reader = new FileReader(); //instanciamos el objeto de la api FileReader
-
-  			reader.onload = function(e) {
-    		document.getElementById("image").src = e.target.result;
-  			};
-
-  		// read the image file as a data URL.
-  		reader.readAsDataURL(this.files[0]);
-		};
-
-		function limite_textarea(valor) {   
-    		total = valor.length;
-        	document.getElementById('cont').innerHTML = total;
-		}
-
-		
-
-		
-	</script>
-
 @endsection
