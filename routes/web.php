@@ -29,6 +29,29 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']], function(){
 		'as'=>'users.destroy'
 	]);
 
+	Route::resource('courts','CourtsController');
+	Route::get('court/{id}/destroy',[
+		'uses'=>'CourtsController@destroy',
+		'as'=>'court.destroy'
+	]);
+
+	Route::resource('turns','TurnsController');
+	Route::get('turn/{id}/destroy',[
+		'uses'=>'TurnsController@destroy',
+		'as'=>'turn.destroy'
+	]);
+
+	Route::resource('reservations','ReservationsController');
+	Route::get('reservation/{id}/destroy',[
+		'uses'=>'ReservationsController@destroy',
+		'as'=>'reservation.destroy'
+	]);
+
+	Route::resource('bookings','BookingController');
+	Route::get('bookings/{id}/destroy',[
+		'uses'=>'BookingController@destroy',
+		'as'=>'bookings.destroy'
+	]);
 });
 
 

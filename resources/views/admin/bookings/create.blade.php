@@ -1,6 +1,6 @@
 @extends('admin.template.main')
 
-@section('title','Nueva Cancha')
+@section('title','New Booking')
 
 @section('content')
 @if(count($errors)>0)
@@ -21,22 +21,16 @@
 	
 @endif
 <div class="container">
-	<h3>Nuevo Cancha</h3>
-
-	{!! Form::open(['route'=>'courts.store', 'method'=>'POST']) !!}
+	<h3>New Booking</h3>
+	{!! Form::open(['route'=>'bookings.store', 'method'=>'POST']) !!}
 		<div class="form-group">
-		{!! Form::label('company_id','Empresa*') !!}
-		{!! Form::select('company_id',$business,null,['class'=>'form-control select-category','required']) !!}
+		{!! Form::label('turn_id','Turno*') !!}
+		{!! Form::select('turn_id',$turns,null,['class'=>'form-control select-category','required']) !!}
 		</div>
 
 		<div class="form-group">
-			{!! Form::label('cantidad_jugadores','Cantidad de Jugadores*') !!}
-			{!! Form::text('cantidad_jugadores',null,['class'=>'form-control','placeholder'=>'Cantidad de Jugadores','required']) !!}
-		</div>
-
-		<div class="form-group">
-			{!! Form::label('precio','Precio*') !!}
-			{!! Form::text('precio',null,['class'=>'form-control','placeholder'=>'Precio','required']) !!}
+		{!! Form::label('reservation_id','Reserva*') !!}
+		{!! Form::select('reservation_id',$reservations,null,['class'=>'form-control select-category','required']) !!}
 		</div>
 
 		<div class="form-group">
@@ -44,8 +38,8 @@
 		</div>
 
 
-
 	{!! Form::close() !!}
+
 
 </div>
 @endsection

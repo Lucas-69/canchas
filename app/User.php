@@ -31,6 +31,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Busines');
     }
 
+    public function reservations(){
+
+        return $this->hasMany('App/Reservation');
+    }
 
     public function admin(){
         return $this->type === 'admin';
