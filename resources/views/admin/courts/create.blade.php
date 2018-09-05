@@ -21,8 +21,9 @@
 	
 @endif
 <div class="container">
-	<h3>Nuevo Cancha</h3>
+	<h3>Nueva Cancha</h3>
 
+	
 	{!! Form::open(['route'=>'courts.store', 'method'=>'POST']) !!}
 		<div class="form-group">
 		{!! Form::label('company_id','Empresa*') !!}
@@ -46,6 +47,7 @@
 
 
 	{!! Form::close() !!}
+
 
 </div>
 @endsection

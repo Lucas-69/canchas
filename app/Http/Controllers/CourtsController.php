@@ -40,7 +40,7 @@ class CourtsController extends Controller
      */
     public function store(Request $request)
     {
-        //dd("desde create todo ok");
+        //dd($request);
         $court = new Court($request->all());
         $court->save();
         flash('Se creado la cancha de la empresa ' . $court->company->name)->success();
