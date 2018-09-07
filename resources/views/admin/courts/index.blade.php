@@ -44,7 +44,7 @@
 			@foreach($courts as $court)
 			<tr>									
 				<td><a href="{{ route('courts.show', $court->id) }}">{{$court->id}}</a>  </td>
-				<td> {{$court->company->name}} </td>
+				<td> {{$court->busines->name}} </td>
 				<td> {{$court->precio}} </td>
 				<td> <a href="{{ route('courts.edit', $court->id) }}" class="btn btn-warning"><span class="glyphicon glyphicon-wrench"></span></a><a href="{{ route('court.destroy', $court->id) }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a> </td>
 			</tr>

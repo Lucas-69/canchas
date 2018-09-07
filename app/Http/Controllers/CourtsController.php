@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Court;
+use App\Field;
 use App\Busines;
 
 class CourtsController extends Controller
@@ -16,7 +16,7 @@ class CourtsController extends Controller
     public function index()
     {
         //
-        $courts = Court::orderBy('id','DESC')->paginate(20);
+        $courts = Field::orderBy('id','DESC')->paginate(20);
         return view('admin.courts.index')->with('courts',$courts);
     }
 
@@ -41,9 +41,10 @@ class CourtsController extends Controller
     public function store(Request $request)
     {
         //dd($request);
-        $court = new Court($request->all());
+        $court = new Field($request->all());
+        //dd($court);
         $court->save();
-        flash('Se creado la cancha de la empresa ' . $court->company->name)->success();
+        flash('Se creado la cancha de la empresa ' . $court->busines->name)->success();
         return redirect()->route('courts.index');
     }
 
@@ -67,7 +68,7 @@ class CourtsController extends Controller
     public function edit($id)
     {
         //      
-        $court = Court::find($id);
+        $court = Field::find($id);
         return view('admin.courts.edit')->with('court',$court);
     }
 
@@ -81,10 +82,10 @@ class CourtsController extends Controller
     public function update(Request $request, $id)
     {
         //dd("desde editar");
-        $court = Court::find($id);
+        $court = Field::find($id);
         $court->fill($request->all());
         $court->save();
-        flash('Se a editado la cancha de la empresa ' . $court->company->name)->success();
+        flash('Se a editado la cancha de la empresa ' . $court->busines->name)->success();
         return redirect()->route('courts.index');
 
     }
@@ -98,9 +99,9 @@ class CourtsController extends Controller
     public function destroy($id)
     {
         //
-        $court = Court::find($id);        
+        $court = Field::find($id);        
         $court->delete();
-        flash('Se a eliminado la cancha de la empresa ' . $court->company->name)->error();
+        flash('Se a eliminado la cancha de la empresa ' . $court->busines->name)->error();
         return redirect()->route('courts.index');
     }
 }

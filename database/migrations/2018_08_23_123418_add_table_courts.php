@@ -15,14 +15,14 @@ class AddTableCourts extends Migration
     {
 
         //
-        Schema::create('courts', function (Blueprint $table) {
+        Schema::create('fields', function (Blueprint $table) {
             $table->increments('id');
             $table->string('cantidad_jugadores');
             $table->string('precio');
 
             //clave foranea
-            $table->integer('company_id')->unsigned();
-            $table->foreign('company_id')->references('id')->on('business')->onDelete('cascade');
+            $table->integer('busines_id')->unsigned();
+            $table->foreign('busines_id')->references('id')->on('business')->onDelete('cascade');
             
             $table->timestamps();
         });

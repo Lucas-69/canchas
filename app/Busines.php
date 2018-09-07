@@ -15,8 +15,8 @@ class Busines extends Model
     	return $this->belongsTo('App\User');
     }
 
-	public function courts(){
-		return $this->hasMany('App\Court');
+	public function fields(){
+		return $this->hasMany('App\Field');
 	}
 
 

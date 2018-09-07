@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Court extends Model
+class Field extends Model
 {
     //
-	protected $table = "courts";
+	protected $table = "fields";
 
-	protected $fillable = ['id','cantidad_jugadores','precio','company_id'];
+	protected $fillable = ['id','cantidad_jugadores','precio','busines_id'];
 
-	public function company(){
+	public function busines(){
 		return $this->belongsTo('App\Busines');
 	}
 
