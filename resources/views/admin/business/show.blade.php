@@ -53,16 +53,45 @@
 			</div>
 		</div>
 
+		<style>
+
+			.sheet_fields{
+				width:250px;
+				height:auto;
+				-webkit-border-radius: 20px;
+				-moz-border-radius: 20px; 
+				border-radius: 20px; 
+				border:1px solid #54BBFF; 
+				background-color:#FFF; 
+				-webkit-box-shadow: #B3B3B3 10px 10px 10px; 
+				-moz-box-shadow: #999 5px 5px 5px; 
+				box-shadow: #998 5px 5px 5px; 
+				text-align: center;
+			}
+			.sheet_img{
+				margin-top:15px;"
+			}
+
+		</style>
+
 		<div>
 			<div>
+				<table width="600px" border="0" cellspacing="2" cellpadding="2"> 
+					
+						@foreach($busines->fields as $field) 
+							<td>
+								<div class="sheet_fields" >
 									
-				@foreach($busines->fields as $field) 
-					<img width="250" height="auto" type="image/svg" src="/image/football-field.svg" alt=" imagen cancha">
-									
-					<h4> {{$field->id}} </h4> 
+									<img class="sheet_img" type="image/svg" src="/image/football-field.svg" alt="imagen cancha">
+													
+									<h4> {{$field->id}} </h4>
 
-				@endforeach
-				
+								</div>
+							</td> 
+							<br>
+						@endforeach
+					
+				 </table> 
 			</div>
 
 		</div>
