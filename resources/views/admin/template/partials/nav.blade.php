@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{ route('admin.inicio')}}"><img src="/images/embalsa.png" alt="" width="30px"></a>
+      <a class="navbar-brand" href="{{route('principal') }}"><i style="font-size: 25px" class="fas fa-home"></i></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

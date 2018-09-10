@@ -93,7 +93,11 @@ Route::group(['prefix'=>'encargado','middleware'=>['auth','encargado']], functio
 });
 
 
-
-Route::get('/', 'HomeController@index');
-
 Auth::routes();
+
+Route::get('/', 'HomeController@inicio');
+Route::get('/inicio', [
+	'uses'=>'PrincipalController@index',
+	'as'=>'principal'
+]);
+
