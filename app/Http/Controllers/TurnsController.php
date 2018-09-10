@@ -42,9 +42,15 @@ class TurnsController extends Controller
     {
         //
         $turn = new Turn($request->all());
+        if ($request->state) {
+            $turn->state = $request->state;
+        } else {
+            $turn->state = '0';
+        }
+        
         $turn->save();
-        flash('Se creado el turno de la cancha n°:' .$turn->court->id. ' de la empresa ' .$turn->court->company->name)->success();
-        return redirect()->route('turns.index');
+        flash('Se creado el turno de la cancha n°:' .$turn->field->id. ' de la empresa ' .$turn->field->busines->name)->success();
+        return redirect()->route('courts.show',$turn->field->id);
     }
 
     /**
@@ -84,8 +90,8 @@ class TurnsController extends Controller
         $turn = Turn::find($id);
         $turn->fill($request->all());
         $turn->save();
-        flash('Se a editado el turno de la cancha n°:' .$turn->court->id. ' de la empresa ' .$turn->court->company->name)->success();
-        return redirect()->route('turns.index');
+        flash('Se a editado el turno de la cancha n°:' .$turn->field->id. ' de la empresa ' .$turn->field->busines->name)->success();
+        return redirect()->route('courts.show',$turn->field->id);
     }
 
     /**
@@ -99,7 +105,7 @@ class TurnsController extends Controller
         //
         $turn = Turn::find($id);      
         $turn->delete();
-        flash('Se a eliminado el turno de la cancha n°:' .$turn->court->id. ' de la empresa ' .$turn->court->company->name)->error();
-        return redirect()->route('turns.index');
+        flash('Se a eliminado el turno de la cancha n°:' .$turn->field->id. ' de la empresa ' .$turn->field->busines->name)->error();
+        return redirect()->route('courts.show',$turn->field->id);
     }
 }

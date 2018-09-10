@@ -11,7 +11,7 @@ class Turn extends Model
 
     protected $fillable = ['id','fecha','hora','state','field_id'];
 
-    public function court(){
+    public function field(){
     	return $this->belongsTo('App\Field');
     }
 

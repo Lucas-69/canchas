@@ -57,6 +57,8 @@ class CourtsController extends Controller
     public function show($id)
     {
         //
+        $field = Field::find($id);
+        return view('admin.courts.show')->with("field",$field);
     }
 
     /**
