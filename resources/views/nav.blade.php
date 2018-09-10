@@ -39,7 +39,7 @@
                                     @if(Auth::user()->type == "admin")
                                         <li><a href="{{route('admin.inicio')}}">Mi Perfil</a></li>
                                     @else                                    
-                                        <li><a href="{{route('editor.inicio')}}">Mi Perfil</a></li>
+                                        <li><a href="{{route('encargado.inicio')}}">Mi Perfil</a></li>
                                     @endif
                                     <li>
                                         <a href="{{ route('logout') }}"

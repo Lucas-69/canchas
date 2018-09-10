@@ -27,11 +27,11 @@ class ComposerServiceProvider extends ServiceProvider
         view()->composer('business.index', function ($view) {
             //
             $id = \Auth::user()->id;
-            $empresa = Busines::where('id', $id)->first();
+            $busines = Busines::where('id', $id)->first();
             //dd($id,$empresa);
-            $canchas = DB::table('fields')->where('busines_id','LIKE',"%$empresa->id%")->get();
+            $canchas = DB::table('fields')->where('busines_id','LIKE',"%$busines->id%")->get();
             //dd($id,$empresa,$canchas);
-            $view->with("canchas",$canchas);
+            $view->with("canchas",$canchas)->with("busines",$busines);
         });
 
     }
