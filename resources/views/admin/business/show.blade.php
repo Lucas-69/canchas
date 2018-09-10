@@ -5,13 +5,15 @@
 @section('content')
 
 <div class="container">
-	<h3><i>{{$busines->name}}</i></h3>	
-
-	<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalCenter">
+	<h3><i>{{$busines->name}} <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModalCenter">
 	  Nueva Cancha
-	</button>
-		<br>
-		<br>
+	</button> </i></h3>
+	<h4>Direccion: <i id="address">{{$busines->ubicacion}}</i> </h4>
+		
+
+
+	<div id="map" style="width: full; height: 250px;"></div> <br>	
+
 		<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 			  <div class="modal-dialog modal-dialog-centered" role="document">
 			    <div class="modal-content">
@@ -27,17 +29,11 @@
 						{!! Form::open(['route'=>'courts.store', 'method'=>'POST']) !!}
 
 							<div class="form-group" style="display: none;">
-								{!! Form::text('company_id',$busines->id,['class'=>'form-control','placeholder'=>'Cantidad de Jugadores','required']) !!}
+								{!! Form::text('busines_id',$busines->id,['class'=>'form-control','placeholder'=>'Cantidad de Jugadores','required']) !!}
 							</div>
 							
 
-	<h4>Direccion: <i id="address">{{$busines->ubicacion}}</i> </h4>
-		
-
-
-	<div id="map" style="width: full; height: 250px;"></div> <br>
-
-
+	
 							<div class="form-group">
 								{!! Form::label('cantidad_jugadores','Cantidad de Jugadores*') !!}
 								{!! Form::text('cantidad_jugadores',null,['class'=>'form-control','placeholder'=>'Cantidad de Jugadores','required']) !!}
@@ -108,21 +104,7 @@
 @endsection
 
 @section('js')
-<script>/*
-	function initMap() {
-	        var myLatLng = {lat: -34.614515589711445, lng: -68.36426334929843};
-
-	        var map = new google.maps.Map(document.getElementById('map'), {
-	          zoom: 4,
-	          center: myLatLng
-	        });
-
-	        var marker = new google.maps.Marker({
-	          position: myLatLng,
-	          map: map,
-	          title: 'Hello World!'
-	        });
-	      }*/
+<script>
 
 	var map;
 	function initMap() {
