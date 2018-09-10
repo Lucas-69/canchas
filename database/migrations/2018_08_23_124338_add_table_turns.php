@@ -29,8 +29,8 @@ class AddTableTurns extends Migration
             */
 
             //clave foranea
-            $table->integer('court_id')->unsigned();
-            $table->foreign('court_id')->references('id')->on('courts')->onDelete('cascade');
+            $table->integer('field_id')->unsigned();
+            $table->foreign('field_id')->references('id')->on('fields')->onDelete('cascade');
             
             $table->timestamps();
         });

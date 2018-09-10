@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Turn;
-use App\Court;
+use App\Field;
 
 class TurnsController extends Controller
 {
@@ -28,7 +28,7 @@ class TurnsController extends Controller
     public function create()
     {
         //
-        $courts = Court::orderBy('id','ASC')->pluck('id','id');
+        $courts = Field::orderBy('id','ASC')->pluck('id','id');
         return view('admin.turns.create')->with('courts',$courts);
     }
 
