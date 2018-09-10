@@ -1,27 +1,26 @@
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
-                    
+                    <a class="navbar-brand" href="{{ url('/') }}"><i style="font-size: 25px" class="fas fa-home"></i></a>
 
-                    <!-- Collapsed Hamburger -->
+                    <!-- Collapsed Hamburger 
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                         <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar">sdfsdf</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+                    </button>-->
+
+
 
                     <!-- Branding Image -->
 
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="/images/embalsa.png" alt="" width="30px">
-                    </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -37,6 +36,11 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                    @if(Auth::user()->type == "admin")
+                                        <li><a href="{{route('admin.inicio')}}">Mi Perfil</a></li>
+                                    @else                                    
+                                        <li><a href="{{route('editor.inicio')}}">Mi Perfil</a></li>
+                                    @endif
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
