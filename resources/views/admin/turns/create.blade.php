@@ -25,8 +25,8 @@
 	<h3>Nuevo Turno</h3>
 		{!! Form::open(['route'=>'turns.store', 'method'=>'POST']) !!}
 			<div class="form-group">
-			{!! Form::label('court_id','Cancha*') !!}
-			{!! Form::select('court_id',$courts,null,['class'=>'form-control select-category','required']) !!}
+			{!! Form::label('field_id','Cancha*') !!}
+			{!! Form::select('field_id',$courts,null,['class'=>'form-control select-category','required']) !!}
 			</div>
 
 			<div class="form-group">

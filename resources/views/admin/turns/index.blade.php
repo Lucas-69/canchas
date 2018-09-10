@@ -32,8 +32,8 @@
 			@foreach($turns as $turn)
 			<tr>									
 				<td>{{$turn->id}} </td>
-				<td> {{$turn->court->company->name}} </td>
-				<td> {{$turn->court->id}} </td>
+				<td> {{$turn->field->busines->name}} </td>
+				<td> {{$turn->field->id}} </td>
 				<td> {{$turn->fecha}} </td>
 				<td> {{$turn->hora}} </td>
 				<td> {{$turn->state}} </td>
