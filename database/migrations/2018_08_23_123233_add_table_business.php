@@ -17,7 +17,9 @@ class AddTableBusiness extends Migration
         Schema::create('business', function (Blueprint $table) {
             $table->increments('id');            
             $table->string('name');
-            $table->string('ubicacion');
+            $table->string('ubicacion')->unique();
+            $table->string('latitude')->unique();
+            $table->string('longitude')->unique();
 
             //clave foranea
             $table->integer('user_id')->unsigned();

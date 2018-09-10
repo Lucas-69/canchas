@@ -28,7 +28,7 @@ class BusinessController extends Controller
      */
     public function create()
     {
-        Mapper::map(-34.618669, -68.339767, ['eventDblClick' => 'console.log("double left click");']);
+        //Mapper::map(-34.618669, -68.339767, ['eventDblClick' => 'console.log("double left click");']);
         return view('admin.business.create');
     }
 
@@ -40,7 +40,8 @@ class BusinessController extends Controller
      */
     public function store(Request $request)
     {
-        //      
+        //
+        //dd($request);
         $busines = new Busines($request->all());
         //el administrador deberia elegir al usuario... no ser el usuario
         $busines->user_id = \Auth::user()->id;
@@ -59,7 +60,6 @@ class BusinessController extends Controller
     {
         //
         $busines = Busines::find($id);
-        Mapper::map(-34.618669, -68.339767, ['eventDblClick' => 'console.log("double left click");']);
         return view('admin.business.show')->with('busines',$busines);
     }
 
