@@ -54,6 +54,44 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']], function(){
 	]);
 });
 
+Route::group(['prefix'=>'encargado','middleware'=>['auth','encargado']], function(){
+
+	Route::get('/',function(){
+		return view('business.index');
+	})->name('encargado.inicio');
+
+	Route::resource('businessUsers','BusinessUsersController');
+	Route::get('business/{id}/destroy',[
+		'uses'=>'BusinessUsersController@destroy',
+		'as'=>'businessUser.destroy'
+	]);
+
+
+	Route::resource('fields','FieldsUsersController');
+	Route::get('fields/{id}/destroy',[
+		'uses'=>'FieldsUsersController@destroy',
+		'as'=>'fields.destroy'
+	]);
+
+	/*Route::resource('turns','TurnsController');
+	Route::get('turn/{id}/destroy',[
+		'uses'=>'TurnsController@destroy',
+		'as'=>'turn.destroy'
+	]);
+
+	Route::resource('reservations','ReservationsController');
+	Route::get('reservation/{id}/destroy',[
+		'uses'=>'ReservationsController@destroy',
+		'as'=>'reservation.destroy'
+	]);
+
+	Route::resource('bookings','BookingController');
+	Route::get('bookings/{id}/destroy',[
+		'uses'=>'BookingController@destroy',
+		'as'=>'bookings.destroy'
+	]);*/
+});
+
 
 
 Route::get('/', 'HomeController@index');
