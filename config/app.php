@@ -161,6 +161,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Cornford\Googlmapper\MapperServiceProvider::class,
+        //Compositor de vistas / View Factory
+        App\Http\ViewComposers\ComposerServiceProvider::class,
 
     ],
 

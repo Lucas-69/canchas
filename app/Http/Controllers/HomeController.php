@@ -29,7 +29,7 @@ class HomeController extends Controller
        if($request->user()->type == 'admin'){
            return view('admin.index');
        }elseif ($request->user()->type == 'encargado') {
-           return view('encargado.index');
+           return view('business.index');
        }elseif ($request->user()->type == 'cliente') {
            return view('cliente.index');
        }
