@@ -6871,3 +6871,12 @@ button.close {
   text-decoration: none;
 }
 
+.img-back{
+  background-image: url(/image/img2.jpg); 
+  height: 89%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+
+}
