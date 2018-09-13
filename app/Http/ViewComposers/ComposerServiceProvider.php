@@ -34,6 +34,16 @@ class ComposerServiceProvider extends ServiceProvider
             $view->with("canchas",$canchas)->with("busines",$busines);
         });
 
+        /*view()->composer('customers.index', function ($view) {
+            //
+            $id = \Auth::user()->id;
+            $busines = Busines::where('id', $id)->first();
+            //dd($id,$empresa);
+            $canchas = DB::table('fields')->where('busines_id','LIKE',"%$busines->id%")->get();
+            //dd($id,$empresa,$canchas);
+            $view->with("canchas",$canchas)->with("busines",$busines);
+        });*/
+
     }
 
     /**
