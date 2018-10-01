@@ -13,11 +13,11 @@
         <link rel="stylesheet" href="{{ asset('plugins/trumbowyg/dist/ui/trumbowyg.css')}}">
         <link rel="stylesheet" href="{{ asset('plugins/fontawesome/css/all.css')}}">
     </head>
-    <body>
+    <body >
         @include('nav')
         @include('flash::message')
         @yield('header')
-        <section>
+        <section >
             @yield('content')
             
 

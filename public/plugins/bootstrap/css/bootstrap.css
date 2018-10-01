@@ -4166,7 +4166,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar {
   position: relative;
   min-height: 50px;
-  margin-bottom: 20px;
+  margin-bottom: 1px;
   border: 1px solid transparent;
 }
 @media (min-width: 768px) {
@@ -6872,11 +6872,32 @@ button.close {
 }
 
 .img-back{
+  position: relative;
+  bottom: 1px;
   background-image: url(/image/img2.jpg); 
-  height: 89%;
+  height: 100%;
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
   background-size: cover;
+}
 
+.title {
+  color: #7FFFD4;
+
+}
+
+.pelotita{
+  color: #7FFFD4;
+}
+
+.second-cont{
+ position: relative;
+ top:50px;
+}
+
+.third-cont{
+  width: 100%;
+  height: 200px;
+  background-color: white;
 }
