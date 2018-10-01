@@ -38,8 +38,10 @@
                                 <ul class="dropdown-menu" role="menu">
                                     @if(Auth::user()->type == "admin")
                                         <li><a href="{{route('admin.inicio')}}">Mi Perfil</a></li>
-                                    @else                                    
+                                    @elseif(Auth::user()->type == "encargado")
                                         <li><a href="{{route('encargado.inicio')}}">Mi Perfil</a></li>
+                                    @else
+                                        <li><a href="{{route('cliente.inicio')}}">Mi Perfil</a></li>                
                                     @endif
                                     <li>
                                         <a href="{{ route('logout') }}"

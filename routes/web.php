@@ -92,6 +92,18 @@ Route::group(['prefix'=>'encargado','middleware'=>['auth','encargado']], functio
 	]);*/
 });
 
+Route::group(['prefix'=>'cliente','middleware'=>['auth','cliente']], function(){
+
+	Route::get('/',function(){
+		return view('customers.index');
+	})->name('cliente.inicio');
+
+	Route::get('/reservations/{user_id}', [
+		'uses'=>'ReservationUsersController@index',
+		'as'=>'customers.reservations'
+	]);
+});
+
 
 Auth::routes();
 
